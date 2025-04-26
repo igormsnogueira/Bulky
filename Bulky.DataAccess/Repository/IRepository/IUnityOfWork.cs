@@ -10,6 +10,7 @@ namespace BulkyBook.DataAccess.Repository.IRepository
     {
         //set one attribute/variable for each entity/model repository you have. Ex: CategoryRepository, ProductRepository, etc.
         ICategoryRepository Category { get; }
+        IProductRepository Product { get; }
         void Save(); //method to commit/save/apply all db operations to the database
     }
 }
