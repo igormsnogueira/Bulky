@@ -10,8 +10,8 @@ namespace BulkyBook.DataAccess.Repository.IRepository
     //defining a generic repository interface
     public interface IRepository<T> where T: class //generic class T, so it can be any model like Category, Movie , etc ..., and specifying that T must be type class and not a data type like int,string etc.
     {
-        IEnumerable<T> GetAll(); //defining method to get all elements from a entity/data table, IEnumerable is a generic type for any collection like List<>, Array, Dictionary
-        T Get(Expression<Func<T,bool>> filter); //defining method to get a specific element, instead of providing id, to be more flexible, we are going to provide the LINQ function used to find the item, so it can be like (obj)=> obj.id == 5 
+        IEnumerable<T> GetAll(string? includeProperties = null); //defining method to get all elements from a entity/data table, IEnumerable is a generic type for any collection like List<>, Array, Dictionary. The includeProperties is a list of foreign properties linked to the current model to load them all in the same query for each record
+        T Get(Expression<Func<T,bool>> filter, string? includeProperties = null); //defining method to get a specific element, instead of providing id, to be more flexible, we are going to provide the LINQ function used to find the item, so it can be like (obj)=> obj.id == 5. And the includeProperties is the same logic explained on the GetAll above
         void Add(T entity); //Add the element provided to the data/table
         //void Update(T entity);//Update the element provided to the data/table, as many times we just update some parts of the element, and it depends on the entity, some people prefer to not include the update and call the update directly from the business logic/controller method, or including a method to it in a specific repository interface
         void Remove(T entity);//Remove the element provided from the data/table

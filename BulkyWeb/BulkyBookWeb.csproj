@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\images\products\2137616a-1aa4-4c9e-8b8d-bc0dc8288880.jpg" />
+    <Content Remove="wwwroot\images\products\563f8473-c11e-49b1-9922-8746eb8a8895.jpg" />
+    <Content Remove="wwwroot\images\products\64a3bec3-e2c6-46ab-8d37-f89247266e56.jpg" />
+    <Content Remove="wwwroot\images\products\acc1d074-3581-43c8-b612-dd2149cdb185.png" />
+    <Content Remove="wwwroot\images\products\ce686c69-fa44-477e-8768-b2a115ce9b3c.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.3">
       <PrivateAssets>all</PrivateAssets>
@@ -24,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <Folder Include="wwwroot\images\products\" />
   </ItemGroup>
 
 </Project>

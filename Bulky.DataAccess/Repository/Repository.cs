@@ -25,16 +25,31 @@ namespace BulkyBook.DataAccess.Repository
             dbSet.Add(entity); //adding the entity to db and then saving
         }
 
-        public T Get(Expression<Func<T, bool>> filter)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)//includeProperties will be a list of properties, split by comma ",", set in this model/entity class that are linked through a foreign key, so we can load this foreign entity in the same query together with the main entity. EX:Get All the Products, but includes for each the Category and Author associated with it. So here we would provided "Category,Author" the name must match the name of the property set in the model
         {
             IQueryable<T> query = dbSet; //we need to define it as queryable first before running any query functions, related to sql clauses like where() or ToList(), on it
             query = query.Where(filter); //apply the condition to it
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var prop in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                { //spliting the properties that are separated by , to a list of strings, and adding a filter to remove any empty strings, so we can iterate over them.
+                    query = query.Include(prop); //Include also accepts a string with the name of the Property, instead of a lambda like obj=>obj.Prop
+                }
+
+            }
             return query.FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string? includeProperties = null) //includeProperties will be a list of properties, split by comma ",", set in this model/entity class that are linked through a foreign key, so we can load this foreign entity in the same query together with the main entity. EX:Get All the Products, but includes for each the Category and Author associated with it. So here we would provided "Category,Author" the name must match the name of the property set in the model
         {
             IQueryable<T> query = dbSet;
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach(var prop in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)){ //spliting the properties that are separated by , to a list of strings, and adding a filter to remove any empty strings, so we can iterate over them.
+                    query = query.Include(prop); //Include also accepts a string with the name of the Property, instead of a lambda like obj=>obj.Prop
+                }
+
+            }
             return query.ToList();
         }
 
