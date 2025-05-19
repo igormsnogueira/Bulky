@@ -8,11 +8,11 @@ function loadDataTable() {
     dataTable = $("#tblData").DataTable({ //the id provided must match the tag of the html table id set in the view, in this case "tblData"
         "ajax": { url: "/admin/company/getall" }, //api endpoint to get the data to be used to feed this table
         "columns": [ //define the value for each column in the view. The number of th you define in the table structure must match the number of columns we define here
-            { data: "title", "width": "25%" },
-            { data: "isbn", "width": "15%" },
-            { data: "listPrice", "width": "10%" },
-            { data: "author", "width": "15%" },
-            { data: "category.name", "width": "15%" },
+            { data: "name", "width": "15%" },
+            { data: "streetAddress", "width": "15%" },
+            { data: "city", "width": "15%" },
+            { data: "state", "width": "15%" },
+            { data: "phoneNumber", "width": "15%" },
             {
                 data: "id",
                 "render": function(data){ //render is a specifial function to render html as the value of this column, data parameter received in this case is the "id"

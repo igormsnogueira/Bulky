@@ -9,6 +9,7 @@ namespace BulkyBook.DataAccess.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Company> Companies { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
 
@@ -21,6 +22,12 @@ namespace BulkyBook.DataAccess.Data
                 new Category { Id = 2, Name = "SciFi", DisplayOrder = 2 },
                 new Category { Id = 3, Name = "History", DisplayOrder = 3 }
             );
+
+            modelBuilder.Entity<Company>().HasData(
+                new Company { Id = 1, Name = "Tech Solution", StreetAddress="123 Tech St", City="Tech City", State="12121", PostalCode="IL", PhoneNumber="9840293203" },
+                new Company { Id = 2, Name = "Vivid Books", StreetAddress = "999 Vivid St", City = "Vivid City", State = "33223", PostalCode = "IL", PhoneNumber = "987216414" },
+                new Company { Id = 3, Name = "Readers Club", StreetAddress = "888 Main St", City = "Lala Land", State = "65432", PostalCode = "NY", PhoneNumber = "6761715641" }
+           );
 
             modelBuilder.Entity<Product>().HasData(
                new Product
